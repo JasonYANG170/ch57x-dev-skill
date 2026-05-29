@@ -344,10 +344,40 @@ cfg.ConnectNumber = (PERIPHERAL_MAX_CONNECTION & 3) | (CENTRAL_MAX_CONNECTION <<
 | 3 | Query | For APIs not covered by recipes, query `resources/` using quick reference docs |
 | 4 | Validate | Verify all API signatures, header includes, pin assignments, config.h values |
 | 5 | Confirm | Present implementation plan to user: includes, pin config, init sequence, main loop |
-| 6 | Execute | Generate code following the standard project structure |
+| 6 | Execute | **New project:** copy the closest example from `resources/EXAM/` to the working directory, then modify. **Existing project:** edit files in place. |
 | 7 | Check | Verify: init order, GPIO config before peripheral use, interrupt handler sections |
 | 8 | Flash | Build with MounRiver Studio, flash via WCH-LinkE or USB ISP |
 | 9 | Debug | Verify via UART debug output (UART1 @ 115200), check BLE with nRF Connect |
+
+### Step 6 Detail — Project Creation Strategy
+
+**When the target directory has no existing project (first-time creation):**
+
+1. **Select the closest example** from `resources/EXAM/` based on user requirements:
+   - BLE peripheral → `resources/EXAM/BLE/Peripheral/`
+   - BLE central → `resources/EXAM/BLE/Central/`
+   - BLE HID → `resources/EXAM/BLE/HID_Keyboard/` (or HID_Mouse, HID_Consumer, HID_Touch)
+   - BLE Mesh → `resources/EXAM/BLE/MESH/adv_ali_light/` (or other mesh variant)
+   - BLE multi-role → `resources/EXAM/BLE/CentPeri/` or `MultiCentPeri/`
+   - BLE OTA/IAP → `resources/EXAM/BLE/BackupUpgrade_OTA/` or `OnlyUpdateApp_Peripheral/`
+   - UART → `resources/EXAM/UART1/`
+   - SPI → `resources/EXAM/SPI0/`
+   - ADC → `resources/EXAM/ADC/`
+   - Timer/PWM → `resources/EXAM/TMR/` or `resources/EXAM/PWMX/`
+   - Flash → `resources/EXAM/FLASH/`
+   - USB device → `resources/EXAM/USB/Device/COM/` (or HID, Vendor)
+   - USB host → `resources/EXAM/USB/Host/HostEnum/`
+   - Power management → `resources/EXAM/PM/`
+
+2. **Copy the entire example directory** to the user's project directory, preserving the full structure (including `APP/`, `Profile/`, linked `SRC/`, etc.)
+
+3. **Modify the copied code** to match user requirements — rename files, adjust config.h, change GATT services, update pin assignments, etc. This is faster and more reliable than writing from scratch.
+
+4. **Explain what was copied and why**, so the user understands the starting point.
+
+**When the target directory already contains a project:**
+
+Edit existing files in place. Do not overwrite unless explicitly asked.
 
 ---
 
