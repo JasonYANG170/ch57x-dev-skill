@@ -6,6 +6,8 @@
 
 支持芯片：CH573、CH571 等 CH57x 系列。
 
+**已完成完整WCH芯片支持的SKILL，适用于WCH的多种架构的MCU芯片开发：[wch-dev-skill](https://github.com/JasonYANG170/wch-dev-skill)**
+
 ## 功能特性
 
 - 基于 WCH CH57x EVT SDK 的实际 API 文档
